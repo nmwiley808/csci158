@@ -1,0 +1,128 @@
+"/Users/nmwiley.808/PycharmProjects/csci158 Assignment 1/.venv/bin/python" /Users/nmwiley.808/PycharmProjects/csci158 Assignment 1/Assignment 1 - Finger Spoofing Detection.py
+============================================================
+Fingerprint Spoof Attack Detection
+============================================================
+
+[1] Dataset Loaded Successfully
+ Total Samples: 198
+ Features: Index(['label', 'feat_0', 'feat_1', 'feat_2', 'feat_3', 'feat_4', 'feat_5',
+       'feat_6', 'feat_7', 'feat_8', 'feat_9', 'feat_10', 'feat_11', 'feat_12',
+       'feat_13', 'feat_14', 'feat_15'],
+      dtype='object')
+ Target variable: label (0=Real, 1=Spoof)
+
+ Class Distribution:
+ - Real Fingerprints (0): 48
+ - Spoof fingerprints (1): 150
+
+[2] Data Split:
+  Training Samples: 158
+  Testing Samples: 40
+
+============================================================
+Training Logistic Regression Model...
+============================================================
+[✓] Logistic Regression Model Trained Successfully
+
+[3] Logistic Regression Results:
+    Accuracy:  0.8000 (80.00%)
+    Precision:  0.7895
+    Recall:  1.0000
+    F1 Score:  0.8824
+    Confusion Matrix:
+        Predicted
+        Real Spoof
+    Actual Real      2     8
+           Spoof     0    30
+
+============================================================
+Training Decision Tree Model...
+============================================================
+[✓] Decision Tree Model Trained Successfully
+
+[4] Decision Tree Results:
+    Accuracy:  0.6000 (60.00%)
+    Precision: 0.7059
+    Recall:    0.8000
+    F1-Score:  0.7500
+
+    Confusion Matrix:
+                  Predicted
+                  Real  Spoof
+    Actual Real      0    10
+           Spoof     6    24
+
+============================================================
+Model Comparison Results:
+============================================================
+
+   Metric  Logistic Regression  Decision Tree
+ Accuracy             0.800000       0.600000
+Precision             0.789474       0.705882
+   Recall             1.000000       0.800000
+ F1 Score             0.882353       0.750000
+
+============================================================
+Best Model: Logistic Regression
+============================================================
+
+============================================================
+Results and Findings
+============================================================
+
+1. Logistic Regression (LR)
+   - Accuracy:  0.800000
+   - Precision: 0.789474
+   - Recall:    1.000000
+   - F1-Score:  0.882353
+
+   Interpretation:
+   The Logistic Regression model achieved perfect recall (1.0), meaning
+   it successfully detected ALL 30 spoof fingerprints in the test set.
+   No spoof attacks were missed (zero false negatives).
+
+   However, 8 out of 10 real fingerprints were misclassified
+   as spoofs (80% false positive rate), indicating the model
+   is overly cautious and flags too many legitimate users as threats.
+
+   Strength: Excellent spoof detection—catches all attacks (maximum security)
+  Weakness: High false alarm rate reduces usability (8/10 real users rejected)
+
+2. Decision Tree (DT)
+   - Accuracy:  0.600000
+   - Precision: 0.705882
+   - Recall:    0.800000
+   - F1-Score:  0.750000
+
+   Interpretation:
+   The Decision Tree model achieved only 60.0% overall accuracy,
+   showing moderate performance.
+
+   With recall of 0.80, the model detected 24 out of 30
+   spoof attacks, but MISSED 6 spoofs (20% false negatives)—
+   a significant security concern as these attacks went undetected.
+
+   The confusion matrix shows ALL 10 real fingerprints were
+   misclassified as spoofs (100% false positive rate), indicating
+   severe usability problems—no legitimate users would be granted access.
+
+    Weakness: Missed 6/30 spoof attacks (security risk)
+    Weakness: 100% false positive rate on real fingerprints (severe usability issue)
+    Note: Lower F1-score (0.7500) indicates worse overall balance
+
+3. Overall Comparison
+
+   Logistic Regression significantly outperforms Decision Tree:
+   - Better Accuracy:   0.8000 vs 0.6000
+   - Better Recall:     1.0000 vs 0.8000 (catches all spoofs)
+   - Better Precision:  0.7895 vs 0.7059
+   - Better F1-Score:   0.8824 vs 0.7500
+
+   Recommended Model: Logistic Regression
+
+   While LR has a high false positive rate, it's preferable to DT which:
+   1. Misses critical spoof attacks (6 out of 30)
+   2. Rejects 100% of legitimate users
+   3. Has lower performance across all metrics
+
+Process finished with exit code 0
