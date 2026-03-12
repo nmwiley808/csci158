@@ -59,12 +59,9 @@ CSCI158/
 This repository may include work using:
 
 - Python
-- C / C++
 - Machine Learning libraries (scikit-learn, NumPy, Pandas)
 - Biometric feature extraction techniques
 - Pattern recognition algorithms
-- Linux development environment
-- Jupyter / Google Colab notebooks
 
 ---
 
