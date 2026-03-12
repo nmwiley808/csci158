@@ -1,0 +1,178 @@
+"/Users/nmwiley.808/PycharmProjects/csci158 Assignment 2/.venv/bin/python" /Users/nmwiley.808/PycharmProjects/csci158 Assignment 2/Assignment 2: Face Detection and Recognition using CNNs.py
+/Users/nmwiley.808/PycharmProjects/csci158 Assignment 2/.venv/lib/python3.9/site-packages/urllib3/__init__.py:35: NotOpenSSLWarning: urllib3 v2 only supports OpenSSL 1.1.1+, currently the 'ssl' module is compiled with 'LibreSSL 2.8.3'. See: https://github.com/urllib3/urllib3/issues/3020
+  warnings.warn(
+CSV loaded, rows:  2562
+                        id             label
+0  Robert Downey Jr_87.jpg  Robert Downey Jr
+1       Lisa Kudrow_64.jpg       Lisa Kudrow
+2   Ellen Degeneres_34.jpg   Ellen Degeneres
+3      Billie Eilish_3.jpg     Billie Eilish
+4    Hrithik Roshan_35.jpg    Hrithik Roshan
+
+Example image paths:
+0    /Users/nmwiley.808/PycharmProjects/csci158 Ass...
+1    /Users/nmwiley.808/PycharmProjects/csci158 Ass...
+2    /Users/nmwiley.808/PycharmProjects/csci158 Ass...
+3    /Users/nmwiley.808/PycharmProjects/csci158 Ass...
+4    /Users/nmwiley.808/PycharmProjects/csci158 Ass...
+Name: image_path, dtype: object
+
+No missing files found.
+100%|██████████| 2562/2562 [00:04<00:00, 555.59it/s]
+Number of images procesed = 2562, failed = 0
+Number of classes =  31
+Classes:  ['Akshay Kumar' 'Alexandra Daddario' 'Alia Bhatt' 'Amitabh Bachchan'
+ 'Andy Samberg' 'Anushka Sharma' 'Billie Eilish' 'Brad Pitt'
+ 'Camila Cabello' 'Charlize Theron' 'Claire Holt' 'Courtney Cox'
+ 'Dwayne Johnson' 'Elizabeth Olsen' 'Ellen Degeneres' 'Henry Cavill'
+ 'Hrithik Roshan' 'Hugh Jackman' 'Jessica Alba' 'Kashyap' 'Lisa Kudrow'
+ 'Margot Robbie' 'Marmik' 'Natalie Portman' 'Priyanka Chopra'
+ 'Robert Downey Jr' 'Roger Federer' 'Tom Cruise' 'Vijay Deverakonda'
+ 'Virat Kohli' 'Zac Efron']
+Shapes: (1793, 160, 160, 3) (384, 160, 160, 3) (385, 160, 160, 3)
+Model: "functional"
+┏━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┳━━━━━━━━━━━━━━━━━━━━━━━━┳━━━━━━━━━━━━━━━┓
+┃ Layer (type)                    ┃ Output Shape           ┃       Param # ┃
+┡━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━╇━━━━━━━━━━━━━━━━━━━━━━━━╇━━━━━━━━━━━━━━━┩
+│ input_layer_1 (InputLayer)      │ (None, 160, 160, 3)    │             0 │
+├─────────────────────────────────┼────────────────────────┼───────────────┤
+│ multiply (Multiply)             │ (None, 160, 160, 3)    │             0 │
+├─────────────────────────────────┼────────────────────────┼───────────────┤
+│ true_divide (TrueDivide)        │ (None, 160, 160, 3)    │             0 │
+├─────────────────────────────────┼────────────────────────┼───────────────┤
+│ subtract (Subtract)             │ (None, 160, 160, 3)    │             0 │
+├─────────────────────────────────┼────────────────────────┼───────────────┤
+│ mobilenetv2_1.00_160            │ (None, 5, 5, 1280)     │     2,257,984 │
+│ (Functional)                    │                        │               │
+├─────────────────────────────────┼────────────────────────┼───────────────┤
+│ global_average_pooling2d        │ (None, 1280)           │             0 │
+│ (GlobalAveragePooling2D)        │                        │               │
+├─────────────────────────────────┼────────────────────────┼───────────────┤
+│ dropout (Dropout)               │ (None, 1280)           │             0 │
+├─────────────────────────────────┼────────────────────────┼───────────────┤
+│ dense (Dense)                   │ (None, 256)            │       327,936 │
+├─────────────────────────────────┼────────────────────────┼───────────────┤
+│ batch_normalization             │ (None, 256)            │         1,024 │
+│ (BatchNormalization)            │                        │               │
+├─────────────────────────────────┼────────────────────────┼───────────────┤
+│ dropout_1 (Dropout)             │ (None, 256)            │             0 │
+├─────────────────────────────────┼────────────────────────┼───────────────┤
+│ dense_1 (Dense)                 │ (None, 31)             │         7,967 │
+└─────────────────────────────────┴────────────────────────┴───────────────┘
+ Total params: 2,594,911 (9.90 MB)
+ Trainable params: 336,415 (1.28 MB)
+ Non-trainable params: 2,258,496 (8.62 MB)
+/Users/nmwiley.808/PycharmProjects/csci158 Assignment 2/.venv/lib/python3.9/site-packages/keras/src/trainers/data_adapters/py_dataset_adapter.py:121: UserWarning: Your `PyDataset` class should call `super().__init__(**kwargs)` in its constructor. `**kwargs` can include `workers`, `use_multiprocessing`, `max_queue_size`. Do not pass these arguments to `fit()`, as they will be ignored.
+  self._warn_if_super_not_called()
+Epoch 1/20
+57/57 ━━━━━━━━━━━━━━━━━━━━ 0s 79ms/step - accuracy: 0.1026 - loss: 3.7625WARNING:absl:You are saving your model as an HDF5 file via `model.save()` or `keras.saving.save_model(model)`. This file format is considered legacy. We recommend using instead the native Keras format, e.g. `model.save('my_model.keras')` or `keras.saving.save_model(model, 'my_model.keras')`.
+57/57 ━━━━━━━━━━━━━━━━━━━━ 8s 104ms/step - accuracy: 0.1040 - loss: 3.7526 - val_accuracy: 0.2943 - val_loss: 2.4472 - learning_rate: 0.0010
+Epoch 2/20
+57/57 ━━━━━━━━━━━━━━━━━━━━ 0s 77ms/step - accuracy: 0.3840 - loss: 2.1030WARNING:absl:You are saving your model as an HDF5 file via `model.save()` or `keras.saving.save_model(model)`. This file format is considered legacy. We recommend using instead the native Keras format, e.g. `model.save('my_model.keras')` or `keras.saving.save_model(model, 'my_model.keras')`.
+57/57 ━━━━━━━━━━━━━━━━━━━━ 5s 94ms/step - accuracy: 0.3843 - loss: 2.1019 - val_accuracy: 0.4167 - val_loss: 1.9601 - learning_rate: 0.0010
+Epoch 3/20
+57/57 ━━━━━━━━━━━━━━━━━━━━ 0s 80ms/step - accuracy: 0.4861 - loss: 1.7094WARNING:absl:You are saving your model as an HDF5 file via `model.save()` or `keras.saving.save_model(model)`. This file format is considered legacy. We recommend using instead the native Keras format, e.g. `model.save('my_model.keras')` or `keras.saving.save_model(model, 'my_model.keras')`.
+57/57 ━━━━━━━━━━━━━━━━━━━━ 5s 95ms/step - accuracy: 0.4863 - loss: 1.7089 - val_accuracy: 0.5469 - val_loss: 1.5413 - learning_rate: 0.0010
+Epoch 4/20
+57/57 ━━━━━━━━━━━━━━━━━━━━ 0s 83ms/step - accuracy: 0.5427 - loss: 1.5503WARNING:absl:You are saving your model as an HDF5 file via `model.save()` or `keras.saving.save_model(model)`. This file format is considered legacy. We recommend using instead the native Keras format, e.g. `model.save('my_model.keras')` or `keras.saving.save_model(model, 'my_model.keras')`.
+57/57 ━━━━━━━━━━━━━━━━━━━━ 6s 99ms/step - accuracy: 0.5428 - loss: 1.5491 - val_accuracy: 0.5911 - val_loss: 1.3886 - learning_rate: 0.0010
+Epoch 5/20
+57/57 ━━━━━━━━━━━━━━━━━━━━ 0s 86ms/step - accuracy: 0.6056 - loss: 1.2745WARNING:absl:You are saving your model as an HDF5 file via `model.save()` or `keras.saving.save_model(model)`. This file format is considered legacy. We recommend using instead the native Keras format, e.g. `model.save('my_model.keras')` or `keras.saving.save_model(model, 'my_model.keras')`.
+57/57 ━━━━━━━━━━━━━━━━━━━━ 6s 103ms/step - accuracy: 0.6057 - loss: 1.2749 - val_accuracy: 0.6042 - val_loss: 1.3512 - learning_rate: 0.0010
+Epoch 6/20
+57/57 ━━━━━━━━━━━━━━━━━━━━ 0s 84ms/step - accuracy: 0.6261 - loss: 1.2252WARNING:absl:You are saving your model as an HDF5 file via `model.save()` or `keras.saving.save_model(model)`. This file format is considered legacy. We recommend using instead the native Keras format, e.g. `model.save('my_model.keras')` or `keras.saving.save_model(model, 'my_model.keras')`.
+57/57 ━━━━━━━━━━━━━━━━━━━━ 6s 101ms/step - accuracy: 0.6258 - loss: 1.2257 - val_accuracy: 0.6328 - val_loss: 1.2634 - learning_rate: 0.0010
+Epoch 7/20
+57/57 ━━━━━━━━━━━━━━━━━━━━ 0s 81ms/step - accuracy: 0.6502 - loss: 1.1345WARNING:absl:You are saving your model as an HDF5 file via `model.save()` or `keras.saving.save_model(model)`. This file format is considered legacy. We recommend using instead the native Keras format, e.g. `model.save('my_model.keras')` or `keras.saving.save_model(model, 'my_model.keras')`.
+57/57 ━━━━━━━━━━━━━━━━━━━━ 6s 97ms/step - accuracy: 0.6503 - loss: 1.1340 - val_accuracy: 0.6198 - val_loss: 1.2272 - learning_rate: 0.0010
+Epoch 8/20
+57/57 ━━━━━━━━━━━━━━━━━━━━ 0s 80ms/step - accuracy: 0.6618 - loss: 1.0409WARNING:absl:You are saving your model as an HDF5 file via `model.save()` or `keras.saving.save_model(model)`. This file format is considered legacy. We recommend using instead the native Keras format, e.g. `model.save('my_model.keras')` or `keras.saving.save_model(model, 'my_model.keras')`.
+57/57 ━━━━━━━━━━━━━━━━━━━━ 6s 97ms/step - accuracy: 0.6619 - loss: 1.0412 - val_accuracy: 0.6146 - val_loss: 1.2156 - learning_rate: 0.0010
+Epoch 9/20
+57/57 ━━━━━━━━━━━━━━━━━━━━ 0s 84ms/step - accuracy: 0.6887 - loss: 1.0144WARNING:absl:You are saving your model as an HDF5 file via `model.save()` or `keras.saving.save_model(model)`. This file format is considered legacy. We recommend using instead the native Keras format, e.g. `model.save('my_model.keras')` or `keras.saving.save_model(model, 'my_model.keras')`.
+57/57 ━━━━━━━━━━━━━━━━━━━━ 6s 100ms/step - accuracy: 0.6886 - loss: 1.0145 - val_accuracy: 0.6406 - val_loss: 1.1488 - learning_rate: 0.0010
+Epoch 10/20
+57/57 ━━━━━━━━━━━━━━━━━━━━ 6s 99ms/step - accuracy: 0.6832 - loss: 1.0466 - val_accuracy: 0.6276 - val_loss: 1.1751 - learning_rate: 0.0010
+Epoch 11/20
+57/57 ━━━━━━━━━━━━━━━━━━━━ 0s 85ms/step - accuracy: 0.6955 - loss: 0.9313WARNING:absl:You are saving your model as an HDF5 file via `model.save()` or `keras.saving.save_model(model)`. This file format is considered legacy. We recommend using instead the native Keras format, e.g. `model.save('my_model.keras')` or `keras.saving.save_model(model, 'my_model.keras')`.
+57/57 ━━━━━━━━━━━━━━━━━━━━ 6s 102ms/step - accuracy: 0.6956 - loss: 0.9311 - val_accuracy: 0.6380 - val_loss: 1.1418 - learning_rate: 0.0010
+Epoch 12/20
+57/57 ━━━━━━━━━━━━━━━━━━━━ 6s 97ms/step - accuracy: 0.6830 - loss: 0.9273 - val_accuracy: 0.6276 - val_loss: 1.2088 - learning_rate: 0.0010
+Epoch 13/20
+57/57 ━━━━━━━━━━━━━━━━━━━━ 5s 95ms/step - accuracy: 0.7025 - loss: 0.9529 - val_accuracy: 0.6380 - val_loss: 1.1811 - learning_rate: 0.0010
+Epoch 14/20
+57/57 ━━━━━━━━━━━━━━━━━━━━ 0s 83ms/step - accuracy: 0.7516 - loss: 0.8000WARNING:absl:You are saving your model as an HDF5 file via `model.save()` or `keras.saving.save_model(model)`. This file format is considered legacy. We recommend using instead the native Keras format, e.g. `model.save('my_model.keras')` or `keras.saving.save_model(model, 'my_model.keras')`.
+57/57 ━━━━━━━━━━━━━━━━━━━━ 6s 100ms/step - accuracy: 0.7514 - loss: 0.8006 - val_accuracy: 0.6641 - val_loss: 1.1000 - learning_rate: 0.0010
+Epoch 15/20
+57/57 ━━━━━━━━━━━━━━━━━━━━ 6s 103ms/step - accuracy: 0.7198 - loss: 0.8365 - val_accuracy: 0.6615 - val_loss: 1.1080 - learning_rate: 0.0010
+Epoch 16/20
+57/57 ━━━━━━━━━━━━━━━━━━━━ 6s 98ms/step - accuracy: 0.7614 - loss: 0.7783 - val_accuracy: 0.6328 - val_loss: 1.1499 - learning_rate: 0.0010
+Epoch 17/20
+57/57 ━━━━━━━━━━━━━━━━━━━━ 6s 104ms/step - accuracy: 0.7425 - loss: 0.8118 - val_accuracy: 0.6354 - val_loss: 1.1545 - learning_rate: 0.0010
+Epoch 18/20
+57/57 ━━━━━━━━━━━━━━━━━━━━ 0s 87ms/step - accuracy: 0.7499 - loss: 0.8035WARNING:absl:You are saving your model as an HDF5 file via `model.save()` or `keras.saving.save_model(model)`. This file format is considered legacy. We recommend using instead the native Keras format, e.g. `model.save('my_model.keras')` or `keras.saving.save_model(model, 'my_model.keras')`.
+57/57 ━━━━━━━━━━━━━━━━━━━━ 6s 104ms/step - accuracy: 0.7502 - loss: 0.8031 - val_accuracy: 0.6667 - val_loss: 1.0872 - learning_rate: 5.0000e-04
+Epoch 19/20
+57/57 ━━━━━━━━━━━━━━━━━━━━ 0s 85ms/step - accuracy: 0.7794 - loss: 0.6917WARNING:absl:You are saving your model as an HDF5 file via `model.save()` or `keras.saving.save_model(model)`. This file format is considered legacy. We recommend using instead the native Keras format, e.g. `model.save('my_model.keras')` or `keras.saving.save_model(model, 'my_model.keras')`.
+57/57 ━━━━━━━━━━━━━━━━━━━━ 6s 101ms/step - accuracy: 0.7790 - loss: 0.6928 - val_accuracy: 0.6797 - val_loss: 1.0607 - learning_rate: 5.0000e-04
+Epoch 20/20
+57/57 ━━━━━━━━━━━━━━━━━━━━ 6s 100ms/step - accuracy: 0.7690 - loss: 0.7251 - val_accuracy: 0.6719 - val_loss: 1.0898 - learning_rate: 5.0000e-04
+Epoch 1/10
+57/57 ━━━━━━━━━━━━━━━━━━━━ 15s 176ms/step - accuracy: 0.2485 - loss: 3.3425 - val_accuracy: 0.6641 - val_loss: 1.1150 - learning_rate: 1.0000e-05
+Epoch 2/10
+57/57 ━━━━━━━━━━━━━━━━━━━━ 9s 151ms/step - accuracy: 0.3302 - loss: 2.7889 - val_accuracy: 0.6458 - val_loss: 1.3281 - learning_rate: 1.0000e-05
+Epoch 3/10
+57/57 ━━━━━━━━━━━━━━━━━━━━ 9s 156ms/step - accuracy: 0.3644 - loss: 2.4318 - val_accuracy: 0.6042 - val_loss: 1.5154 - learning_rate: 1.0000e-05
+Epoch 4/10
+57/57 ━━━━━━━━━━━━━━━━━━━━ 9s 151ms/step - accuracy: 0.3876 - loss: 2.2394 - val_accuracy: 0.6016 - val_loss: 1.6085 - learning_rate: 1.0000e-05
+Epoch 5/10
+57/57 ━━━━━━━━━━━━━━━━━━━━ 9s 150ms/step - accuracy: 0.4243 - loss: 2.0420 - val_accuracy: 0.5964 - val_loss: 1.6258 - learning_rate: 5.0000e-06
+Epoch 6/10
+57/57 ━━━━━━━━━━━━━━━━━━━━ 9s 159ms/step - accuracy: 0.4625 - loss: 1.9285 - val_accuracy: 0.5990 - val_loss: 1.6293 - learning_rate: 5.0000e-06
+Epoch 7/10
+57/57 ━━━━━━━━━━━━━━━━━━━━ 10s 170ms/step - accuracy: 0.4817 - loss: 1.8659 - val_accuracy: 0.5990 - val_loss: 1.5999 - learning_rate: 5.0000e-06
+13/13 ━━━━━━━━━━━━━━━━━━━━ 2s 92ms/step
+Test Accuracy: 0.7169 Precision: 0.7529 Recall: 0.7169 F1 (weighted): 0.7192
+Confusion matrix shape =  (31, 31)
+                    precision    recall  f1-score   support
+
+      Akshay Kumar       0.67      0.57      0.62         7
+Alexandra Daddario       0.88      0.50      0.64        14
+        Alia Bhatt       0.55      0.50      0.52        12
+  Amitabh Bachchan       1.00      1.00      1.00        11
+      Andy Samberg       0.90      0.64      0.75        14
+    Anushka Sharma       0.80      0.40      0.53        10
+     Billie Eilish       0.87      0.87      0.87        15
+         Brad Pitt       0.85      0.61      0.71        18
+    Camila Cabello       0.62      0.77      0.69        13
+   Charlize Theron       0.70      0.58      0.64        12
+       Claire Holt       0.77      0.67      0.71        15
+      Courtney Cox       0.90      0.75      0.82        12
+    Dwayne Johnson       0.89      0.89      0.89         9
+   Elizabeth Olsen       0.67      0.80      0.73        10
+   Ellen Degeneres       0.85      1.00      0.92        11
+      Henry Cavill       0.57      0.75      0.65        16
+    Hrithik Roshan       0.56      0.60      0.58        15
+      Hugh Jackman       0.93      0.76      0.84        17
+      Jessica Alba       0.41      0.88      0.56        16
+           Kashyap       1.00      0.75      0.86         4
+       Lisa Kudrow       0.90      0.90      0.90        10
+     Margot Robbie       0.58      0.64      0.61        11
+            Marmik       0.67      0.40      0.50         5
+   Natalie Portman       0.90      0.56      0.69        16
+   Priyanka Chopra       0.57      0.81      0.67        16
+  Robert Downey Jr       0.75      0.88      0.81        17
+     Roger Federer       0.92      0.92      0.92        12
+        Tom Cruise       0.64      0.88      0.74         8
+ Vijay Deverakonda       0.92      0.67      0.77        18
+       Virat Kohli       0.67      0.57      0.62         7
+         Zac Efron       0.53      0.57      0.55        14
+
+          accuracy                           0.72       385
+         macro avg       0.76      0.71      0.72       385
+      weighted avg       0.75      0.72      0.72       385
+
+WARNING:absl:You are saving your model as an HDF5 file via `model.save()` or `keras.saving.save_model(model)`. This file format is considered legacy. We recommend using instead the native Keras format, e.g. `model.save('my_model.keras')` or `keras.saving.save_model(model, 'my_model.keras')`.
+Model can be found in:  /Users/nmwiley.808/PycharmProjects/csci158 Assignment 2/face_recog_mobilenetv2.h5
+
+Process finished with exit code 0
