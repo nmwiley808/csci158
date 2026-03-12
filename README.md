@@ -39,6 +39,9 @@ The course combines **security principles, machine learning, and pattern recogni
 
 ## Repository Structure
 
+## Repository Structure
+
+```
 CSCI158/
 │
 ├── homework_assignments/              # Homework Assignments
@@ -47,6 +50,7 @@ CSCI158/
 ├── notes/                             # Lecture Notes and Study Materials
 ├── datasets/                          # Biometric datasets used for experiments
 └── README.md                          # Repository Documentation
+```
 
 ---
 
