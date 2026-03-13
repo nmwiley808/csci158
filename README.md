@@ -44,9 +44,9 @@ The course combines **security principles, machine learning, and pattern recogni
 ```
 CSCI158/
 │
-├── programming_assignments/           # Biometric Security Programming Assignments
-├── project/                           # Course Project
 ├── datasets/                          # Biometric datasets used for experiments
+├── project/                           # Course Project
+├── programming_assignments/           # Biometric Security Programming Assignments
 └── README.md                          # Repository Documentation
 ```
 
